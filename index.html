@@ -22,10 +22,13 @@
     <h1>Cada entrega,<br><span>en movimiento.</span></h1>
     <p class="cover-sub">Cómo se ve, se mueve y habla LoEntrego en todos sus productos: la web, la app de comercios y repartidores, el panel de administración y cada pieza que salga de la marca.</p>
   </div>
-  <div class="stack" aria-hidden="true">
-    <span class="stack-shadow"></span>
-    <span class="box b1"></span><span class="box b2"></span><span class="box b3"></span>
-  </div>
+  <svg class="route cover-route" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <path class="r-line" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
+      <path class="r-glow" pathLength="100" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
+      <path class="r-comet" pathLength="100" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
+      <circle class="r-ring" cx="360" cy="150" r="10"/>
+      <circle class="r-dot" cx="360" cy="150" r="7"/>
+    </svg>
 </header>
 
 <div class="layout">
@@ -259,10 +262,16 @@
     <section class="sec" id="movimiento" aria-labelledby="t-mov">
       <p class="num">08</p>
       <h2 id="t-mov">Movimiento</h2>
-      <p>La marca se mueve como un envío: <b>salir, viajar y llegar</b>. La animación firma es la <b>pila de cajas</b>: la de arriba se agacha, sale despachada y cae una nueva que rebota sobre la pila.</p>
+      <p>La marca se mueve como un envío: <b>salir, viajar y llegar</b>. La animación firma es la <b>ruta punteada con un cometa de luz lima</b> que la recorre y, al llegar al destino, el punto late y suelta ondas. En pantallas de espera (mantenimiento) se usa la <b>caja en camino</b>: el isotipo da saltitos mientras la ciudad pasa detrás.</p>
       <div class="motion-demo">
         <div class="motion-stage" aria-hidden="true">
-          <div class="stack demo"><span class="stack-shadow"></span><span class="box b1"></span><span class="box b2"></span><span class="box b3"></span></div>
+          <svg class="route demo-route" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <path class="r-line" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
+      <path class="r-glow" pathLength="100" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
+      <path class="r-comet" pathLength="100" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
+      <circle class="r-ring" cx="360" cy="150" r="10"/>
+      <circle class="r-dot" cx="360" cy="150" r="7"/>
+    </svg>
         </div>
         <ul class="rules">
           <li><b>Con propósito.</b> Guía hacia lo importante; nunca tapa ni retrasa el contenido.</li>
@@ -270,7 +279,7 @@
           <li><b>Sin bucles eternos.</b> Lo repetitivo se detiene tras unas pocas vueltas; en uso diario, la intro completa solo la primera vez.</li>
           <li><b>Livianas.</b> Solo se anima posición, escala y opacidad.</li>
           <li><b>Accesibles.</b> Si el sistema pide menos movimiento, todo aparece sin animar.</li>
-          <li><b>Nada sobre el texto.</b> Brillos y líneas no pasan por encima de lo que hay que leer.</li>
+          <li><b>Nada sobre el texto.</b> La ruta y el cometa van por zonas libres (por ejemplo, la esquina superior derecha); nunca cruzan títulos ni párrafos.</li>
         </ul>
       </div>
     </section>

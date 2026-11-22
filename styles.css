@@ -51,13 +51,15 @@ b { font-weight: 600; }
 .cover h1 span { color: var(--lima); }
 .cover-sub { max-width: 56ch; margin-top: 1.5rem; font-size: 1.125rem; color: #CFC8F7; }
 
-/* Pila de cajas (animación firma) */
-.stack { position: relative; width: 150px; height: 220px; }
-.stack-shadow { position: absolute; left: 50%; bottom: -10px; width: 140px; height: 16px; margin-left: -70px; border-radius: 50%; background: radial-gradient(closest-side, rgba(6, 3, 30, 0.5), transparent); animation: shadow 6s var(--ease) 1s 4; }
-.box { position: absolute; left: 50%; aspect-ratio: 553 / 544; background: #fff; -webkit-mask: url("assets/isotipo/isotipo-mascara.png") center / contain no-repeat; mask: url("assets/isotipo/isotipo-mascara.png") center / contain no-repeat; filter: drop-shadow(0 10px 14px rgba(6, 3, 30, 0.35)); transform-origin: 50% 100%; }
-.b1 { bottom: 0; width: 96px; margin-left: -48px; animation: bump 6s var(--ease) 1s 4; }
-.b2 { bottom: 88px; width: 76px; margin-left: -33px; animation: bump 6s var(--ease) 1.03s 4; }
-.b3 { bottom: 160px; width: 56px; margin-left: -32px; animation: dispatch 6s linear 1s 4; }
+/* Ruta punteada + cometa de luz (animación firma, CSS puro) */
+.route { display: block; overflow: visible; }
+.r-line { fill: none; stroke: rgba(255, 255, 255, 0.28); stroke-width: 2.5; stroke-dasharray: 2 10; stroke-linecap: round; }
+.r-comet, .r-glow { fill: none; stroke: var(--lima); stroke-linecap: round; stroke-dasharray: 16 120; stroke-dashoffset: 16; }
+.r-comet { stroke-width: 3; animation: comet 2.6s linear 0.8s 5 both; }
+.r-glow { stroke-width: 10; opacity: 0.2; animation: comet 2.6s linear 0.8s 5 both; }
+.r-dot { fill: var(--lima); transform-box: fill-box; transform-origin: center; animation: dot-hit 2.6s ease-out 0.8s 5; }
+.r-ring { fill: none; stroke: var(--lima); stroke-width: 2; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ring 2.6s ease-out 0.8s 5; }
+.cover-route { width: min(420px, 34vw); align-self: start; margin-top: clamp(4rem, 14vh, 9rem); }
 
 /* ============ ESTRUCTURA ============ */
 .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); max-width: 1240px; margin: 0 auto; padding: 4rem clamp(1.25rem, 4vw, 3rem); }
@@ -197,17 +199,16 @@ b { font-weight: 600; }
 /* Movimiento */
 .motion-demo { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 1.5rem; align-items: center; }
 .motion-stage {
-  position: relative;
   display: grid;
-  place-items: end center;
-  height: 340px;
-  padding-bottom: 34px;
+  place-items: center;
+  height: 300px;
+  padding: 1.5rem;
   border-radius: 22px;
-  background: radial-gradient(60% 50% at 50% 100%, rgba(181, 219, 46, 0.16), transparent 70%), linear-gradient(165deg, var(--azul), var(--azul-oscuro));
-  overflow: hidden; /* la caja despachada no sale del escenario */
+  background: radial-gradient(60% 50% at 80% 30%, rgba(181, 219, 46, 0.14), transparent 70%), linear-gradient(165deg, var(--azul), var(--azul-oscuro));
+  overflow: hidden;
 }
-.stack.demo { width: 150px; height: 230px; }
-.motion-demo .stack.demo .b1, .motion-demo .stack.demo .b2, .motion-demo .stack.demo .b3, .motion-demo .stack.demo .stack-shadow { animation-iteration-count: infinite; animation-delay: 0.6s; }
+.demo-route { width: 100%; height: 100%; }
+.demo-route .r-comet, .demo-route .r-glow, .demo-route .r-dot, .demo-route .r-ring { animation-iteration-count: infinite; }
 .rules { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .rules li { padding: 0.75rem 1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-size: 0.9375rem; color: var(--muted); }
 .rules b { color: var(--text); }
@@ -247,27 +248,17 @@ b { font-weight: 600; }
 }
 @media (max-width: 640px) {
   .cover { grid-template-columns: 1fr; min-height: auto; }
-  .cover .stack { justify-self: end; transform: scale(0.7); transform-origin: 100% 100%; margin-top: -2rem; }
+  .cover-route { width: 70%; justify-self: end; margin-top: -1rem; }
   .grid-2, .voice, .motion-demo { grid-template-columns: 1fr; }
   .swatches.small { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ratio span { font-size: 0.6875rem; }
 }
 
 /* ============ ANIMACIONES ============ */
-@keyframes dispatch {
-  0%, 46%  { transform: none; opacity: 1; animation-timing-function: ease-out; }
-  50%      { transform: translateY(3px) scale(1.07, 0.9); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
-  62%      { transform: translate(220px, -200px) rotate(30deg); opacity: 1; }
-  63%      { transform: translate(220px, -200px) rotate(30deg); opacity: 0; }
-  64%      { transform: translateY(-280px) rotate(-16deg); opacity: 0; animation-timing-function: ease-out; }
-  66%      { transform: translateY(-280px) rotate(-16deg); opacity: 1; animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.5); }
-  76%      { transform: translateY(0) rotate(0); animation-timing-function: ease-out; }
-  80%      { transform: translateY(-18px) rotate(2deg); animation-timing-function: ease-in; }
-  84%      { transform: translateY(0) scale(1.06, 0.92); animation-timing-function: ease-out; }
-  88%, 100% { transform: none; }
-}
-@keyframes bump { 0%, 75% { transform: none; } 77% { transform: scale(1.04, 0.93); } 81% { transform: none; } 84% { transform: scale(1.02, 0.97); } 88%, 100% { transform: none; } }
-@keyframes shadow { 0%, 75% { transform: none; } 77% { transform: scaleX(1.12); } 82%, 100% { transform: none; } }
+/* El cometa recorre la ruta; el punto late y suelta una onda al pasar */
+@keyframes comet { 0% { stroke-dashoffset: 16; } 100% { stroke-dashoffset: -100; } }
+@keyframes dot-hit { 0%, 60% { transform: scale(1); } 66% { transform: scale(1.7); } 74%, 100% { transform: scale(1); } }
+@keyframes ring { 0%, 60% { transform: scale(1); opacity: 0; } 62% { opacity: 0.8; } 100% { transform: scale(4.5); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
