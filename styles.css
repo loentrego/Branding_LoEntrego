@@ -60,13 +60,14 @@ b { font-weight: 600; }
 .r-dot { fill: var(--lima); transform-box: fill-box; transform-origin: center; animation: dot-hit 2.6s ease-out 0.8s 5; }
 .r-ring { fill: none; stroke: var(--lima); stroke-width: 2; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ring 2.6s ease-out 0.8s 5; }
 .cover-inner { position: relative; z-index: 1; }
-/* Fondo de puntos (puntos.js): la ciudad a la derecha, se apaga hacia el texto */
+/* Fondo de puntos planos: más visibles a la derecha y abajo, se desvanecen hacia el texto */
 .cover-puntos {
   position: absolute; inset: 0;
-  width: 100%; height: 100%;
   pointer-events: none;
-  -webkit-mask: linear-gradient(to right, rgba(0,0,0,.25) 0, rgba(0,0,0,.4) 35%, #000 60%);
-          mask: linear-gradient(to right, rgba(0,0,0,.25) 0, rgba(0,0,0,.4) 35%, #000 60%);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.42) 1.1px, transparent 1.6px);
+  background-size: 18px 18px;
+  -webkit-mask: radial-gradient(120% 120% at 100% 100%, #000 0%, rgba(0, 0, 0, 0.45) 45%, transparent 80%);
+          mask: radial-gradient(120% 120% at 100% 100%, #000 0%, rgba(0, 0, 0, 0.45) 45%, transparent 80%);
 }
 
 /* ============ ESTRUCTURA ============ */
@@ -256,7 +257,6 @@ b { font-weight: 600; }
 }
 @media (max-width: 640px) {
   .cover { grid-template-columns: 1fr; min-height: auto; }
-  .cover-puntos { opacity: .4; -webkit-mask: linear-gradient(to bottom, rgba(0,0,0,.3), #000 70%); mask: linear-gradient(to bottom, rgba(0,0,0,.3), #000 70%); }
   .grid-2, .voice, .motion-demo { grid-template-columns: 1fr; }
   .swatches.small { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ratio span { font-size: 0.6875rem; }
