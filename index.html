@@ -22,13 +22,8 @@
     <h1>Cada entrega,<br><span>en movimiento.</span></h1>
     <p class="cover-sub">Cómo se ve, se mueve y habla LoEntrego en todos sus productos: la web, la app de comercios y repartidores, el panel de administración y cada pieza que salga de la marca.</p>
   </div>
-  <svg class="route cover-route" viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <path class="r-line" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
-      <path class="r-glow" pathLength="100" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
-      <path class="r-comet" pathLength="100" d="M 20 300 C 90 300, 120 210, 200 215 S 320 250, 360 150 S 390 40, 420 20"/>
-      <circle class="r-ring" cx="360" cy="150" r="10"/>
-      <circle class="r-dot" cx="360" cy="150" r="7"/>
-    </svg>
+  <!-- Fondo de puntos: Bogotá, Funza y Soacha en puntos, con entregas en lima -->
+  <canvas id="puntos" class="cover-puntos" data-zona="0.74,0.5,0.86" aria-hidden="true"></canvas>
 </header>
 
 <div class="layout">
@@ -333,5 +328,6 @@
 
 <div class="copied" id="copied" role="status" aria-live="polite"></div>
 <script src="script.js"></script>
+<script src="puntos.js?v=1" defer></script>
 </body>
 </html>
