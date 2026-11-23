@@ -172,7 +172,7 @@ b { font-weight: 600; }
 .dia h3 { color: #fff; margin-bottom: 2.25rem; }
 .dia p, .dia ul { font-family: 'Inter', sans-serif; opacity: 1; color: var(--muted); }
 .noche { background: var(--noche); color: #E7E4FA; }
-.noche h3 { font-family: 'Baloo 2', sans-serif; }
+.noche h3 { font-family: 'Poppins', sans-serif; }
 .constants { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 1rem 1.25rem; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); font-size: 0.875rem; }
 .constants span { padding: 3px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
 
