@@ -40,7 +40,6 @@ b { font-weight: 600; }
   color: #fff;
   background:
     radial-gradient(60% 60% at 90% 0%, rgba(120, 100, 255, 0.55), transparent 70%),
-    radial-gradient(40% 40% at 0% 100%, rgba(181, 219, 46, 0.12), transparent 70%),
     linear-gradient(165deg, var(--azul), var(--azul-oscuro) 70%, var(--azul-profundo));
   overflow: hidden;
 }
@@ -271,3 +270,12 @@ b { font-weight: 600; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* Logo en la esquina superior izquierda de la portada */
+.cover-logo {
+  position: absolute; top: clamp(1.5rem, 4vw, 2.5rem); left: clamp(1.5rem, 6vw, 6rem);
+  width: clamp(150px, 16vw, 210px); margin: 0 !important; z-index: 2;
+}
+.cover { padding-top: clamp(7rem, 16vh, 10rem); }
+.cover-inner { position: static !important; }
+.cover { align-items: center; min-height: 78vh; }
