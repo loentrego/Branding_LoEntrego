@@ -280,3 +280,10 @@ b { font-weight: 600; }
 .cover { padding-top: clamp(7rem, 16vh, 10rem); }
 .cover-inner { position: static !important; }
 .cover { align-items: center; min-height: 78vh; }
+
+/* Portada: bloque de texto más compacto, en la esquina inferior izquierda */
+.cover { align-items: end !important; padding-bottom: clamp(2rem, 5vh, 3.5rem); }
+.cover-inner { max-width: 560px; align-self: end; }
+.cover h1 { font-size: clamp(2rem, 1.5rem + 2.6vw, 3.75rem); }
+.cover .kicker { margin-bottom: 0.75rem; font-size: 0.75rem; }
+.cover-sub { max-width: 46ch; margin-top: 1rem; font-size: 1rem; }
