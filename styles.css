@@ -287,3 +287,14 @@ b { font-weight: 600; }
 .cover h1 { font-size: clamp(2rem, 1.5rem + 2.6vw, 3.75rem); }
 .cover .kicker { margin-bottom: 0.75rem; font-size: 0.75rem; }
 .cover-sub { max-width: 46ch; margin-top: 1rem; font-size: 1rem; }
+
+/* Portada: bloque compacto pegado a la esquina inferior izquierda del recuadro */
+.cover { position: relative; min-height: 78vh; }
+.cover-inner {
+  position: absolute !important; left: clamp(1.5rem, 6vw, 6rem); bottom: clamp(1.25rem, 3.5vh, 2.25rem);
+  max-width: 440px; z-index: 2;
+}
+.cover .kicker { margin-bottom: 0.5rem; padding: 3px 10px; font-size: 0.6875rem; }
+.cover h1 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.6rem); line-height: 1; }
+.cover-sub { max-width: 40ch; margin-top: 0.65rem; font-size: 0.875rem; line-height: 1.5; }
+@media (max-width: 640px) { .cover { min-height: 70vh; } .cover-inner { right: 1.5rem; } }
