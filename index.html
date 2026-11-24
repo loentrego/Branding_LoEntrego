@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&family=Nunito:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20261124b">
-<link rel="stylesheet" href="etiquetas/etiqueta.css?v=6">
+<link rel="stylesheet" href="etiquetas/etiqueta.css?v=7">
 <link rel="icon" href="assets/iconos/icon-192.png">
 </head>
 <body>
@@ -324,7 +324,7 @@
       </div>
       <h3 class="h3">Reglas</h3>
       <ul class="rules">
-        <li><b>Lo del repartidor, primero y grande</b>: nombre, dirección (máximo 2 líneas) y localidad a la izquierda; celular y cobro a la derecha, para que las dos columnas pesen igual. No lleva "Desde" ni zona: todos los pedidos salen del mismo lugar.</li>
+        <li><b>Lo del repartidor, primero y grande</b>: nombre, dirección (máximo 2 líneas) y celular a la izquierda; a la derecha el destino (localidad grande y municipio con el pin) y el cobro, a juego. No lleva "Desde" ni zona: todos los pedidos salen del mismo lugar.</li>
         <li><b>El cobro se ve de lejos</b>: bloque relleno con el valor si hay que cobrar ("Cobrar · $45.000"); solo contorno y "No cobrar" si ya está pagado.</li>
         <li><b>Código de barras Code 128</b> con el código del pedido (3 letras + 7 números, p. ej. <code>LOE-0001042</code>). El código se escribe solo una vez, arriba. Lo lee una pistola o la cámara del celular. Siempre en negro sobre blanco, también en la versión a color.</li>
         <li><b>Imprimir al 100 %</b>, papel de 100 × 50 mm y márgenes en "Ninguno". En la versión tinta no se usan grises claros: en térmica se pierden.</li>
@@ -360,7 +360,7 @@
 
 <div class="copied" id="copied" role="status" aria-live="polite"></div>
 <script src="etiquetas/code128.js?v=1"></script>
-<script src="etiquetas/etiqueta.js?v=6"></script>
+<script src="etiquetas/etiqueta.js?v=7"></script>
 <script>
   // Muestras de la etiqueta en el manual (tamaño real, reducido para la pantalla)
   window.ETIQUETA_BASE = 'etiquetas/';

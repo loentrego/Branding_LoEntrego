@@ -36,7 +36,6 @@ window.Etiqueta = (() => {
     const tinta = version === 'tinta';
     const base = (window.ETIQUETA_BASE ?? '');
     const paga = Number(d.cobro) > 0;
-    const lugar = [d.localidad, MUNICIPIOS[d.municipio] || d.municipio].filter(Boolean).join(' · ');
     // margen 20 = 10 módulos en blanco a cada lado (lo exige Code 128)
     const barras = window.Code128 ? Code128.svg(d.codigo, { alto: 40, modulo: 2, margen: 20 }) : '';
     return `
@@ -50,11 +49,14 @@ window.Etiqueta = (() => {
           <small>Para</small>
           <p class="etq-nombre">${esc(d.nombre)}</p>
           <p class="etq-dir">${esc(d.direccion)}</p>
-          <p class="etq-lugar">${esc(lugar)}</p>
+          <p class="etq-tel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>${esc(celular(d.telefono))}</p>
           ${d.notas ? `<p class="etq-notas">${esc(d.notas)}</p>` : ''}
         </section>
         <aside class="etq-lado">
-          <p class="etq-tel"><small>Celular</small>${esc(celular(d.telefono))}</p>
+          <div class="etq-destino">
+            <svg class="etq-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-7-6.4-7-12a7 7 0 0 1 14 0c0 5.6-7 12-7 12Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <div><b>${esc(d.localidad || MUNICIPIOS[d.municipio] || '')}</b><small>${esc(d.localidad ? (MUNICIPIOS[d.municipio] || d.municipio) : 'Colombia')}</small></div>
+          </div>
           <div class="etq-cobro ${paga ? 'cobrar' : 'pagado'}"><small>${paga ? 'Cobrar' : 'Pagado'}</small><b>${paga ? pesos(d.cobro) : 'No cobrar'}</b></div>
         </aside>
       </div>
