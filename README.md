@@ -33,3 +33,21 @@ assets/
 | Tinta | `#12092E` |
 | Noche | `#0B0826` |
 | Lavanda | `#ECE9F8` |
+
+## Etiqueta de envío (para imprimir)
+
+`etiquetas/` tiene la etiqueta que va pegada en cada paquete, de 10 × 15 cm (4 × 6 in), en dos versiones:
+
+- **Tinta** (`etiquetas/?version=tinta`): solo negro, para impresora térmica o láser en blanco y negro.
+- **Color** (`etiquetas/?version=color`): azul de marca y lima.
+
+Lleva un código de barras Code 128 con el código del pedido (`etiquetas/code128.js`, sin librerías), que se puede leer con pistola o con el celular.
+
+La app abre la etiqueta con los datos del pedido de dos formas:
+
+- `?datos=` con el JSON del pedido en base64url;
+- campos sueltos, por ejemplo `?codigo=LE-1042&nombre=…&cobro=45000`.
+
+Con `&imprimir` abre directo el cuadro de impresión.
+
+Al imprimir: papel de 100 × 150 mm, márgenes "Ninguno" y escala 100 %.

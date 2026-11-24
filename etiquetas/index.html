@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Etiqueta de envío · LoEntrego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="etiqueta.css?v=2">
+<link rel="icon" href="img/icon-192.png">
+<style>
+  /* Página para imprimir: la etiqueta al centro y una barra que no se imprime */
+  @page { size: 100mm 150mm; margin: 0; }
+  body { margin: 0; min-height: 100vh; font-family: 'Inter', Arial, sans-serif; background: #ECE9F8; color: #17104A; }
+  .barra { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; padding: 14px 16px; background: #fff; border-bottom: 1px solid #DFDAF1; }
+  .barra b { font-family: 'Outfit', sans-serif; font-size: 1.05rem; margin-right: 8px; }
+  .seg { display: inline-flex; padding: 4px; border-radius: 12px; background: #ECE9F8; }
+  .seg button { min-height: 38px; padding: 0 16px; border: 0; border-radius: 9px; background: none; font: inherit; font-weight: 600; color: #5D5889; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: #fff; color: #3422A8; box-shadow: 0 2px 8px -2px rgba(23,16,74,.2); }
+  .imprimir { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border: 0; border-radius: 12px; background: #B5DB2E; color: #12092E; font: inherit; font-family: 'Outfit', sans-serif; font-weight: 700; cursor: pointer; }
+  .imprimir svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .nota { width: 100%; margin: 0; font-size: .8125rem; text-align: center; color: #5D5889; }
+  .hoja { display: grid; place-items: center; padding: 28px 16px 40px; }
+  .hoja .etq { box-shadow: 0 24px 48px -24px rgba(23, 16, 74, .45); border-radius: 2mm; }
+  :focus-visible { outline: 2.5px solid #3422A8; outline-offset: 2px; }
+  @media print {
+    body { background: #fff; }
+    .barra { display: none; }
+    .hoja { padding: 0; display: block; }
+    .hoja .etq { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <b>Etiqueta de envío · 10 × 15 cm</b>
+  <div class="seg" role="group" aria-label="Versión">
+    <button type="button" data-version="tinta">Tinta (B/N)</button>
+    <button type="button" data-version="color">Color</button>
+  </div>
+  <button type="button" class="imprimir" id="imprimir">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a1 1 0 0 1-1-1v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1h-2"/><path d="M6 14h12v7H6Z"/></svg>
+    Imprimir
+  </button>
+  <p class="nota">Al imprimir: tamaño de papel 100 × 150 mm (4 × 6 in), márgenes "Ninguno" y escala 100 %.</p>
+</div>
+
+<main class="hoja" id="hoja"></main>
+
+<script src="code128.js?v=1"></script>
+<script src="etiqueta.js?v=1"></script>
+<script>
+  // Datos: ?datos=<JSON en base64url>  o  campos sueltos (?codigo=…&nombre=…&cobro=…)
+  // Versión: ?version=tinta | color
+  (() => {
+    const q = new URLSearchParams(location.search);
+    let datos = {};
+    try {
+      if (q.get('datos')) {
+        const b64 = q.get('datos').replace(/-/g, '+').replace(/_/g, '/');
+        datos = JSON.parse(decodeURIComponent(escape(atob(b64))));
+      }
+    } catch { /* datos mal formados: se usa el ejemplo */ }
+    for (const k of Object.keys(Etiqueta.EJEMPLO)) if (q.has(k)) datos[k] = q.get(k);
+
+    let version = q.get('version') === 'color' ? 'color' : 'tinta';
+    const botones = document.querySelectorAll('[data-version]');
+    const pintar = () => {
+      document.getElementById('hoja').innerHTML = Etiqueta.html(datos, version);
+      botones.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.version === version)));
+      document.title = `Etiqueta ${datos.codigo || Etiqueta.EJEMPLO.codigo} · LoEntrego`;
+    };
+    botones.forEach((b) => b.addEventListener('click', () => {
+      version = b.dataset.version;
+      const u = new URL(location); u.searchParams.set('version', version); history.replaceState(null, '', u);
+      pintar();
+    }));
+    document.getElementById('imprimir').addEventListener('click', () => window.print());
+    pintar();
+    if (q.has('imprimir')) addEventListener('load', () => setTimeout(() => window.print(), 300));
+  })();
+</script>
+</body>
+</html>
