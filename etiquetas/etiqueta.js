@@ -50,10 +50,11 @@ window.Etiqueta = (() => {
           <small>Para</small>
           <p class="etq-nombre">${esc(d.nombre)}</p>
           <p class="etq-dir">${esc(d.direccion)}</p>
-          <p class="etq-lugar">${esc(lugar)} · <b>${esc(celular(d.telefono))}</b></p>
+          <p class="etq-lugar">${esc(lugar)}</p>
           ${d.notas ? `<p class="etq-notas">${esc(d.notas)}</p>` : ''}
         </section>
         <aside class="etq-lado">
+          <p class="etq-tel"><small>Celular</small>${esc(celular(d.telefono))}</p>
           <div class="etq-cobro ${paga ? 'cobrar' : 'pagado'}"><small>${paga ? 'Cobrar' : 'Pagado'}</small><b>${paga ? pesos(d.cobro) : 'No cobrar'}</b></div>
         </aside>
       </div>
