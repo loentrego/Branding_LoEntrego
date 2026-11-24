@@ -12,7 +12,7 @@ window.Etiqueta = (() => {
 
   // Datos de ejemplo (los mismos campos que entrega la API en PedidoDetalle)
   const EJEMPLO = {
-    codigo: 'LE-1042',
+    codigo: 'LOE-0001042',
     fecha: '2026-11-24',
     nombre: 'Andrea Gómez',
     telefono: '3001234567',
@@ -37,12 +37,12 @@ window.Etiqueta = (() => {
     const base = (window.ETIQUETA_BASE ?? '');
     const paga = Number(d.cobro) > 0;
     const lugar = [d.localidad, MUNICIPIOS[d.municipio] || d.municipio].filter(Boolean).join(' · ');
-    const barras = window.Code128 ? Code128.svg(d.codigo, { alto: 40, modulo: 2, margen: 0 }) : '';
+    // margen 20 = 10 módulos en blanco a cada lado (lo exige Code 128)
+    const barras = window.Code128 ? Code128.svg(d.codigo, { alto: 40, modulo: 2, margen: 20 }) : '';
     return `
     <article class="etq etq-${tinta ? 'tinta' : 'color'}" aria-label="Etiqueta de envío ${esc(d.codigo)}">
       <header class="etq-top">
         <img class="etq-logo" src="${base}img/${tinta ? 'logo-negro.png' : 'logo-blanco.png'}" alt="LoEntrego" width="1383" height="374">
-        <span class="etq-zona">${esc(d.zona || MUNICIPIOS[d.municipio] || '')}</span>
         <b class="etq-cod">${esc(d.codigo)}</b>
       </header>
       <div class="etq-cuerpo">
@@ -55,13 +55,11 @@ window.Etiqueta = (() => {
         </section>
         <aside class="etq-lado">
           <div class="etq-cobro ${paga ? 'cobrar' : 'pagado'}"><small>${paga ? 'Cobrar' : 'Pagado'}</small><b>${paga ? pesos(d.cobro) : 'No cobrar'}</b></div>
-          <p class="etq-desde"><small>Desde</small>${esc(d.comercio)}</p>
         </aside>
       </div>
       <footer class="etq-pie">
         <span class="perfora" aria-hidden="true"></span>
         <div class="etq-barras">${barras}</div>
-        <span class="etq-num">${esc(d.codigo)}</span>
       </footer>
     </article>`;
   }

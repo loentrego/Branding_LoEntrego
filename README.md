@@ -46,7 +46,7 @@ Lleva un código de barras Code 128 con el código del pedido (`etiquetas/code12
 La app abre la etiqueta con los datos del pedido de dos formas:
 
 - `?datos=` con el JSON del pedido en base64url;
-- campos sueltos, por ejemplo `?codigo=LE-1042&nombre=…&cobro=45000`.
+- campos sueltos, por ejemplo `?codigo=LOE-0001042&nombre=…&cobro=45000`.
 
 Con `&imprimir` abre directo el cuadro de impresión.
 

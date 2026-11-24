@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&family=Nunito:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20261124b">
-<link rel="stylesheet" href="etiquetas/etiqueta.css?v=3">
+<link rel="stylesheet" href="etiquetas/etiqueta.css?v=5">
 <link rel="icon" href="assets/iconos/icon-192.png">
 </head>
 <body>
@@ -259,7 +259,7 @@
 
       <h3 class="h3">Ticket de pedido</h3>
       <div class="ticket">
-        <div class="ticket-top"><span class="pill" data-tono="move" style="background:#fff">En camino</span><span class="ticket-code">LE-1042</span></div>
+        <div class="ticket-top"><span class="pill" data-tono="move" style="background:#fff">En camino</span><span class="ticket-code">LOE-0001042</span></div>
         <p class="ticket-name">Andrea Gómez</p>
         <div class="ticket-amount"><span>Cobro contraentrega</span><b>$45.000</b></div>
       </div>
@@ -298,7 +298,7 @@
       <p>Hablamos de <b>tú</b>, en frases cortas y concretas, como un aliado del negocio. Explicamos lo que pasa y qué hacer después.</p>
       <div class="voice">
         <div class="do"><b>Así sí</b>
-          <p>“Pedido LE-1046 creado para Laura.”</p>
+          <p>“Pedido LOE-0001046 creado para Laura.”</p>
           <p>“Tus pedidos en curso siguen en ruta; solo la app está en pausa.”</p>
           <p>“Celular de 10 dígitos que empiece por 3.”</p>
         </div>
@@ -324,13 +324,13 @@
       </div>
       <h3 class="h3">Reglas</h3>
       <ul class="rules">
-        <li><b>Lo del repartidor, primero y grande</b>: nombre, dirección (máximo 2 líneas), localidad y celular de quien recibe. La zona va arriba junto al código y el comercio a la derecha, pequeño.</li>
+        <li><b>Lo del repartidor, primero y grande</b>: nombre, dirección (máximo 2 líneas), localidad y celular de quien recibe. No lleva "Desde" ni zona: todos los pedidos salen del mismo lugar.</li>
         <li><b>El cobro se ve de lejos</b>: bloque relleno con el valor si hay que cobrar ("Cobrar · $45.000"); solo contorno y "No cobrar" si ya está pagado.</li>
-        <li><b>Código de barras real</b> (Code 128) con el código del pedido. Lo lee una pistola o la cámara del celular. Siempre en negro sobre blanco, también en la versión a color.</li>
+        <li><b>Código de barras Code 128</b> con el código del pedido (3 letras + 7 números, p. ej. <code>LOE-0001042</code>). El código se escribe solo una vez, arriba. Lo lee una pistola o la cámara del celular. Siempre en negro sobre blanco, también en la versión a color.</li>
         <li><b>Imprimir al 100 %</b>, papel de 100 × 50 mm y márgenes en "Ninguno". En la versión tinta no se usan grises claros: en térmica se pierden.</li>
         <li><b>Sin datos de más</b>: no se imprimen correos, documentos ni la tarifa. Las notas van en una sola línea; si el texto es largo se corta con "…".</li>
       </ul>
-      <p class="note">Para imprimir: <a href="etiquetas/?version=tinta" target="_blank" rel="noopener">etiquetas/?version=tinta</a> o <a href="etiquetas/?version=color" target="_blank" rel="noopener">?version=color</a>. La app la abre con los datos del pedido (<code>?datos=</code> con el JSON del pedido, o campos sueltos como <code>?codigo=LE-1042&amp;nombre=…&amp;cobro=45000</code>).</p>
+      <p class="note">Para imprimir: <a href="etiquetas/?version=tinta" target="_blank" rel="noopener">etiquetas/?version=tinta</a> o <a href="etiquetas/?version=color" target="_blank" rel="noopener">?version=color</a>. La app la abre con los datos del pedido (<code>?datos=</code> con el JSON del pedido, o campos sueltos como <code>?codigo=LOE-0001042&amp;nombre=…&amp;cobro=45000</code>).</p>
     </section>
 
     <!-- ============ 11 DESCARGAS ============ -->
@@ -360,7 +360,7 @@
 
 <div class="copied" id="copied" role="status" aria-live="polite"></div>
 <script src="etiquetas/code128.js?v=1"></script>
-<script src="etiquetas/etiqueta.js?v=2"></script>
+<script src="etiquetas/etiqueta.js?v=5"></script>
 <script>
   // Muestras de la etiqueta en el manual (tamaño real, reducido para la pantalla)
   window.ETIQUETA_BASE = 'etiquetas/';

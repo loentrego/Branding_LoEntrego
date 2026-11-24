@@ -1,8 +1,8 @@
 // =====================================================================
 //  Code 128 (juego B) en SVG — sin librerías
 //  Lo leen las pistolas y las cámaras de celular. Se usa para el código
-//  del pedido (LE-1042) en las etiquetas de envío.
-//  Uso: Code128.svg('LE-1042', { alto: 60, modulo: 2 })
+//  del pedido (LOE-0001042) en las etiquetas de envío.
+//  Uso: Code128.svg('LOE-0001042', { alto: 60, modulo: 2 })
 // =====================================================================
 window.Code128 = (() => {
   'use strict';
