@@ -36,7 +36,7 @@ assets/
 
 ## Etiqueta de envío (para imprimir)
 
-`etiquetas/` tiene la etiqueta que va pegada en cada paquete, de 10 × 15 cm (4 × 6 in), en dos versiones:
+`etiquetas/` tiene la etiqueta que va pegada en cada paquete, de 10 cm de ancho × 5 cm de alto, en dos versiones:
 
 - **Tinta** (`etiquetas/?version=tinta`): solo negro, para impresora térmica o láser en blanco y negro.
 - **Color** (`etiquetas/?version=color`): azul de marca y lima.
@@ -50,4 +50,4 @@ La app abre la etiqueta con los datos del pedido de dos formas:
 
 Con `&imprimir` abre directo el cuadro de impresión.
 
-Al imprimir: papel de 100 × 150 mm, márgenes "Ninguno" y escala 100 %.
+Al imprimir: papel de 100 × 50 mm, márgenes "Ninguno" y escala 100 %.

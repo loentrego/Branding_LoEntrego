@@ -8,11 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="etiqueta.css?v=2">
+<link rel="stylesheet" href="etiqueta.css?v=3">
 <link rel="icon" href="img/icon-192.png">
 <style>
   /* Página para imprimir: la etiqueta al centro y una barra que no se imprime */
-  @page { size: 100mm 150mm; margin: 0; }
+  @page { size: 100mm 50mm; margin: 0; }
   body { margin: 0; min-height: 100vh; font-family: 'Inter', Arial, sans-serif; background: #ECE9F8; color: #17104A; }
   .barra { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; padding: 14px 16px; background: #fff; border-bottom: 1px solid #DFDAF1; }
   .barra b { font-family: 'Outfit', sans-serif; font-size: 1.05rem; margin-right: 8px; }
@@ -23,20 +23,21 @@
   .imprimir svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .nota { width: 100%; margin: 0; font-size: .8125rem; text-align: center; color: #5D5889; }
   .hoja { display: grid; place-items: center; padding: 28px 16px 40px; }
-  .hoja .etq { box-shadow: 0 24px 48px -24px rgba(23, 16, 74, .45); border-radius: 2mm; }
+  .hoja .etq { box-shadow: 0 24px 48px -24px rgba(23, 16, 74, .45); border-radius: 1.5mm; zoom: 1.6; }
+  @media (max-width: 680px) { .hoja .etq { zoom: 1; } }
   :focus-visible { outline: 2.5px solid #3422A8; outline-offset: 2px; }
   @media print {
     body { background: #fff; }
     .barra { display: none; }
     .hoja { padding: 0; display: block; }
-    .hoja .etq { box-shadow: none; border-radius: 0; }
+    .hoja .etq { box-shadow: none; border-radius: 0; zoom: 1; }
   }
 </style>
 </head>
 <body>
 
 <div class="barra">
-  <b>Etiqueta de envío · 10 × 15 cm</b>
+  <b>Etiqueta de envío · 10 × 5 cm</b>
   <div class="seg" role="group" aria-label="Versión">
     <button type="button" data-version="tinta">Tinta (B/N)</button>
     <button type="button" data-version="color">Color</button>
@@ -45,13 +46,13 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a1 1 0 0 1-1-1v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1h-2"/><path d="M6 14h12v7H6Z"/></svg>
     Imprimir
   </button>
-  <p class="nota">Al imprimir: tamaño de papel 100 × 150 mm (4 × 6 in), márgenes "Ninguno" y escala 100 %.</p>
+  <p class="nota">Al imprimir: tamaño de papel 100 × 50 mm (ancho × alto), márgenes "Ninguno" y escala 100 %.</p>
 </div>
 
 <main class="hoja" id="hoja"></main>
 
 <script src="code128.js?v=1"></script>
-<script src="etiqueta.js?v=1"></script>
+<script src="etiqueta.js?v=2"></script>
 <script>
   // Datos: ?datos=<JSON en base64url>  o  campos sueltos (?codigo=…&nombre=…&cobro=…)
   // Versión: ?version=tinta | color

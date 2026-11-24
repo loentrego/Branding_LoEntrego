@@ -1,5 +1,5 @@
 // =====================================================================
-//  LoEntrego · Etiqueta de envío (10 × 15 cm)
+//  LoEntrego · Etiqueta de envío (10 × 5 cm: ancho × alto)
 //  Etiqueta.html(datos, 'color' | 'tinta') → HTML de una etiqueta
 //  La usan la página para imprimir (etiquetas/index.html) y el manual.
 // =====================================================================
@@ -21,7 +21,7 @@ window.Etiqueta = (() => {
     localidad: 'Chapinero',
     zona: 'Chapinero',
     cobro: 45000,
-    notas: 'Entregar en portería, preguntar por Sr. Gómez',
+    notas: 'Portería, preguntar por Sr. Gómez',
     comercio: 'Tienda Central',
     comercio_direccion: 'Calle 80 #15-20, Bogotá',
   };
@@ -34,41 +34,34 @@ window.Etiqueta = (() => {
   function html(d = EJEMPLO, version = 'color') {
     d = { ...EJEMPLO, ...d };
     const tinta = version === 'tinta';
-    const logo = tinta ? 'logo-negro.png' : 'logo-blanco.png';
     const base = (window.ETIQUETA_BASE ?? '');
     const paga = Number(d.cobro) > 0;
-    const barras = window.Code128 ? Code128.svg(d.codigo, { alto: 64, modulo: 2, margen: 0 }) : '';
+    const lugar = [d.localidad, MUNICIPIOS[d.municipio] || d.municipio].filter(Boolean).join(' · ');
+    const barras = window.Code128 ? Code128.svg(d.codigo, { alto: 40, modulo: 2, margen: 0 }) : '';
     return `
     <article class="etq etq-${tinta ? 'tinta' : 'color'}" aria-label="Etiqueta de envío ${esc(d.codigo)}">
       <header class="etq-top">
-        <img class="etq-logo" src="${base}img/${logo}" alt="LoEntrego" width="1383" height="374">
-        <div class="etq-cod"><small>Pedido</small><b>${esc(d.codigo)}</b></div>
+        <img class="etq-logo" src="${base}img/${tinta ? 'logo-negro.png' : 'logo-blanco.png'}" alt="LoEntrego" width="1383" height="374">
+        <span class="etq-zona">${esc(d.zona || MUNICIPIOS[d.municipio] || '')}</span>
+        <b class="etq-cod">${esc(d.codigo)}</b>
       </header>
-
-      <div class="etq-ruta">
-        <div><small>Desde</small><b>${esc(d.comercio)}</b><span>${esc(d.comercio_direccion)}</span></div>
-        <svg class="etq-flecha" viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6h34M29 1l6 5-6 5"/></svg>
-        <div class="etq-zona"><small>Zona</small><b>${esc(d.zona || MUNICIPIOS[d.municipio] || '')}</b><span>${esc(fecha(d.fecha))}</span></div>
+      <div class="etq-cuerpo">
+        <section class="etq-para">
+          <small>Para</small>
+          <p class="etq-nombre">${esc(d.nombre)}</p>
+          <p class="etq-dir">${esc(d.direccion)}</p>
+          <p class="etq-lugar">${esc(lugar)} · <b>${esc(celular(d.telefono))}</b></p>
+          ${d.notas ? `<p class="etq-notas">${esc(d.notas)}</p>` : ''}
+        </section>
+        <aside class="etq-lado">
+          <div class="etq-cobro ${paga ? 'cobrar' : 'pagado'}"><small>${paga ? 'Cobrar' : 'Pagado'}</small><b>${paga ? pesos(d.cobro) : 'No cobrar'}</b></div>
+          <p class="etq-desde"><small>Desde</small>${esc(d.comercio)}</p>
+        </aside>
       </div>
-
-      <section class="etq-para">
-        <small>Para</small>
-        <p class="etq-nombre">${esc(d.nombre)}</p>
-        <p class="etq-dir">${esc(d.direccion)}</p>
-        <p class="etq-lugar">${esc([d.localidad, MUNICIPIOS[d.municipio] || d.municipio].filter(Boolean).join(' · '))}</p>
-        <p class="etq-tel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>${esc(celular(d.telefono))}</p>
-      </section>
-
-      <div class="etq-cobro ${paga ? 'cobrar' : 'pagado'}">
-        <small>${paga ? 'Cobrar al entregar' : 'Pedido pagado'}</small>
-        <b>${paga ? pesos(d.cobro) : 'No cobrar'}</b>
-      </div>
-
-      ${d.notas ? `<p class="etq-notas"><small>Notas</small>${esc(d.notas)}</p>` : ''}
-
       <footer class="etq-pie">
-        <div class="etq-barras">${barras}<span>${esc(d.codigo)}</span></div>
-        <p class="etq-ayuda">¿Dónde va tu pedido? Escríbenos con este código · loentrego.com</p>
+        <span class="perfora" aria-hidden="true"></span>
+        <div class="etq-barras">${barras}</div>
+        <span class="etq-num">${esc(d.codigo)}</span>
       </footer>
     </article>`;
   }

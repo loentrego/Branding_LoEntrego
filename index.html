@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&family=Nunito:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20261124a">
-<link rel="stylesheet" href="etiquetas/etiqueta.css?v=2">
+<link rel="stylesheet" href="etiquetas/etiqueta.css?v=3">
 <link rel="icon" href="assets/iconos/icon-192.png">
 </head>
 <body>
@@ -317,18 +317,18 @@
     <section class="sec" id="etiqueta" aria-labelledby="t-etq">
       <p class="num">10</p>
       <h2 id="t-etq">Etiqueta de envío</h2>
-      <p class="lead">Va pegada en cada paquete. Tamaño estándar de <b>10 × 15 cm</b> (4 × 6 in), el de las impresoras de etiquetas, y en dos versiones según la impresora.</p>
+      <p class="lead">Va pegada en cada paquete. Mide <b>10 cm de ancho × 5 cm de alto</b>, así que va condensada: solo lo que necesita el repartidor. Hay dos versiones según la impresora.</p>
       <div class="etq-muestras">
         <figure><div class="etq-marco" id="etq-tinta"></div><figcaption><b>Tinta</b> · solo negro. Impresora térmica o láser en blanco y negro.</figcaption></figure>
         <figure><div class="etq-marco" id="etq-color"></div><figcaption><b>Color</b> · azul de marca y lima. Impresora a color.</figcaption></figure>
       </div>
       <h3 class="h3">Reglas</h3>
       <ul class="rules">
-        <li><b>Lo del repartidor, primero y grande</b>: nombre, dirección y celular de quien recibe. El comercio y la zona van arriba, más pequeños.</li>
-        <li><b>El cobro se ve de lejos</b>: bloque relleno con el valor si hay que cobrar ("Cobrar al entregar · $45.000"); solo contorno y "No cobrar" si ya está pagado.</li>
+        <li><b>Lo del repartidor, primero y grande</b>: nombre, dirección (máximo 2 líneas), localidad y celular de quien recibe. La zona va arriba junto al código y el comercio a la derecha, pequeño.</li>
+        <li><b>El cobro se ve de lejos</b>: bloque relleno con el valor si hay que cobrar ("Cobrar · $45.000"); solo contorno y "No cobrar" si ya está pagado.</li>
         <li><b>Código de barras real</b> (Code 128) con el código del pedido. Lo lee una pistola o la cámara del celular. Siempre en negro sobre blanco, también en la versión a color.</li>
-        <li><b>Imprimir al 100 %</b>, papel de 100 × 150 mm y márgenes en "Ninguno". En la versión tinta no se usan grises claros: en térmica se pierden.</li>
-        <li><b>Sin datos de más</b>: no se imprimen correos, documentos ni el valor de la tarifa; solo lo necesario para entregar.</li>
+        <li><b>Imprimir al 100 %</b>, papel de 100 × 50 mm y márgenes en "Ninguno". En la versión tinta no se usan grises claros: en térmica se pierden.</li>
+        <li><b>Sin datos de más</b>: no se imprimen correos, documentos ni la tarifa. Las notas van en una sola línea; si el texto es largo se corta con "…".</li>
       </ul>
       <p class="note">Para imprimir: <a href="etiquetas/?version=tinta" target="_blank" rel="noopener">etiquetas/?version=tinta</a> o <a href="etiquetas/?version=color" target="_blank" rel="noopener">?version=color</a>. La app la abre con los datos del pedido (<code>?datos=</code> con el JSON del pedido, o campos sueltos como <code>?codigo=LE-1042&amp;nombre=…&amp;cobro=45000</code>).</p>
     </section>
@@ -360,7 +360,7 @@
 
 <div class="copied" id="copied" role="status" aria-live="polite"></div>
 <script src="etiquetas/code128.js?v=1"></script>
-<script src="etiquetas/etiqueta.js?v=1"></script>
+<script src="etiquetas/etiqueta.js?v=2"></script>
 <script>
   // Muestras de la etiqueta en el manual (tamaño real, reducido para la pantalla)
   window.ETIQUETA_BASE = 'etiquetas/';
